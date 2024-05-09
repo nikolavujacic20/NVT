@@ -2,27 +2,23 @@ package ftn.ntp.dto;
 
 import ftn.ntp.model.Role;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class RegistrationRequest {
 
         private String password;
         private String email;
         private Role role;
+        private String city;
+        private String phone;
+        private String firstName;
+        private String lastName;
+        private String car;
+        private String status;
 
 
-    public void setPassword(String password) {
-            this.password = password;
-        }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public void setEmail(String email) {
-            this.email = email;
-        }
-
-        // Getters and setters
     }
 

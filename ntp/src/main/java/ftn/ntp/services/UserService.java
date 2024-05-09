@@ -4,6 +4,9 @@ import ftn.ntp.repositories.RegularUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+
+
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +15,7 @@ import java.util.Optional;
 
 
         private final RegularUserRepository userRepository;
+
 
         @Autowired
         public UserService(RegularUserRepository userRepository) {
@@ -34,10 +38,20 @@ import java.util.Optional;
         public RegularUser updateUser(Long id, RegularUser userDetails) {
             return userRepository.findById(id)
                     .map(user -> {
-                        user.setEmail(userDetails.getEmail());
-                        user.setPassword(userDetails.getPassword());
-                        // Update other fields as necessary
+                        user.setPhone(userDetails.getPhone());
+                        user.setCity(userDetails.getCity());
+                        user.setFirstName(userDetails.getFirstName());
+                        user.setLastName(userDetails.getLastName());
+
+
                         return userRepository.save(user);
                     }).orElseThrow(() -> new RuntimeException("User not found with id " + id));
         }
-}
+
+        public void updateUserImage(Long userId, String imageUrl) {
+            RegularUser user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+            user.setImageUrl(imageUrl);
+            userRepository.save(user);
+        }
+
+    }

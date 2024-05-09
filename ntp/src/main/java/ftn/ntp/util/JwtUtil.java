@@ -29,8 +29,17 @@ public class JwtUtil {
     }
 
     // Generate token for user
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails,Map<String, Object> additionalClaims) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", additionalClaims.get("userId")); // Add user ID
+        claims.put("city", additionalClaims.get("city")); // Add user city
+        claims.put("phone",additionalClaims.get("phone"));
+        claims.put("firstName",additionalClaims.get("firstName"));
+        claims.put("lastName",additionalClaims.get("lastName"));
+        claims.put("birthday",additionalClaims.get("birthday"));
+        claims.put("role",additionalClaims.get("role"));
+
+
         return createToken(claims, userDetails.getUsername());
     }
 
